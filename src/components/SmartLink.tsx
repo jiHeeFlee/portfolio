@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Link, useFetcher, matchRoutes } from 'react-router-dom';
-import { router } from '@/routes';
+import { router } from '@/router';
 
 import type { To } from 'react-router-dom';
 import { createPath } from 'history';
