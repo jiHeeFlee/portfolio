@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import RootLayout from './layouts/RootLayout';
-import NotFound from './routes/_errors/NotFound';
+import NotFound from './pages/_errors/NotFound';
 
 // 라우트 컴포넌트를 import()로 미리 당길 수 있게 하는 helper
 export function lazyPreload<T extends { default: React.ComponentType<any> }>(
@@ -17,9 +17,10 @@ export function lazyPreload<T extends { default: React.ComponentType<any> }>(
   };
 }
 
-const Home = lazyPreload(() => import('./routes/home/Home.route'));
-const Landing = lazyPreload(() => import('./routes/landing/Landing.route'));
-const Post = lazyPreload(() => import('./routes/posts/Post.route'));
+const Home = lazyPreload(() => import('./pages/home/page'));
+const Landing = lazyPreload(() => import('./pages/landing/page'));
+const Post = lazyPreload(() => import('./pages/posts/page'));
+const Upload = lazyPreload(() => import('./pages/upload/page'));
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       { path: 'home', element: <Home /> },
       { path: 'landing', element: <Landing /> },
+      { path: 'upload', element: <Upload /> },
       {
         path: `posts/:id`,
         element: <Post />,
