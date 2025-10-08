@@ -1,0 +1,334 @@
+/* reset import */
+@import './reset.css';
+
+/* -------------------------
+   1. Font & Root Tokens
+   ------------------------- */
+
+:root {
+  --background: #fafafa;
+  --foreground: #171717;
+
+  font-family: 'Pretendard Variable', sans-serif;
+  font-synthesis: none; /* 폰트 합성 방지 */
+  text-rendering: optimizeLegibility; /* 텍스트 렌더링 최적화 */
+  -webkit-font-smoothing: antialiased; /* 웹킷 브라우저 폰트 부드럽게 */
+  -moz-osx-font-smoothing: grayscale; /* 모질라 브라우저 폰트 부드럽게 */
+
+  /* ========== font token ==========  */
+  --ft-landing: clamp(33px, 2.81vw, 54px);
+
+  --ft-h1: clamp(30px, 2.5vw, 48px);
+  --ft-h2: clamp(26px, 2.19vw, 42px);
+  --ft-h3: clamp(25px, 2.08vw, 40px);
+  --ft-h4: clamp(22px, 1.88vw, 36px);
+  --ft-h5: clamp(20px, 1.67vw, 32px);
+
+  --ft-content-26: clamp(15px, 1.35vw, 26px);
+  --ft-content-25: clamp(15px, 1.3vw, 25px);
+  --ft-content-24: clamp(15px, 1.25vw, 24px);
+
+  --ft-caption-20: clamp(12px, 1.04vw, 20px);
+  --ft-caption-18: clamp(11px, 0.94vw, 18px);
+
+  /* ========== semantic font token ========== */
+  --ft-project-title: var(--ft-h1);
+  --ft-project-header: var(--ft-content-26);
+  --ft-project-period: var(--ft-caption-20);
+  --ft-project-team: var(--ft-content-26);
+  --ft-project-info: var(--ft-content-26);
+  --ft-project-link: var(--ft-content-26);
+  --ft-project-skill: var(--ft-content-24);
+
+  --ft-project-part: var(--ft-h1);
+  --ft-project-solution-title: var(--ft-h4);
+  --ft-project-part-caption: var(--ft-caption-20);
+  --ft-project-part-content: var(--ft-content-26);
+  --ft-project-solution-caption: var(--ft-content-26);
+  --ft-project-solution-step: var(--ft-h5);
+  --ft-project-solution-content: var(--ft-content-26);
+
+  --ft-cursor-comment: var(--ft-caption-20);
+}
+
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/assets/fonts/PretendardVariable.woff2') format('woff2');
+  font-weight: 100 900; /* 100~900까지 가변 */
+  font-display: swap; /* 렌더링 최적화 추가 (웹폰트 로딩 시 가시성을 유지) */
+  font-style: normal;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: static; /* fixed가 viewport 기준으로 작동하도록 */
+
+  /* ========== 컬러 선언 ========== */
+  /* Primary Color : 그린 계열 */
+  --pr-c-100: #d8f6ec;
+  --pr-c-200: #b1eed9;
+  --pr-c-300: #8be5c5;
+  --pr-c-400: #64ddb2;
+  --pr-c-500: #3dd49f;
+  --pr-c-600: #2bc38d;
+  --pr-c-700: #25a678;
+  --pr-c-800: #1e8963;
+  --pr-c-900: #186c4e;
+  --pr-c-1000: #114f39;
+  --pr-c-10: rgba(61, 212, 159, 0.1);
+  --pr-c-20: rgba(61, 212, 159, 0.2);
+  --pr-c-30: rgba(61, 212, 159, 0.3);
+  --pr-c-50: rgba(61, 212, 159, 0.5);
+
+  /* Gray Scale : 무채색 계열 */
+  --gr-caption: #d4d4d4;
+  --gr-date: #b3b3b3;
+  --gr-light: #9f9f9f;
+  --gr-string: #7c7c7c;
+  --gr-dark: #4f4f4f;
+
+  /* Semantic Color : 상황별 색상*/
+  --sc-pr-point: var(--pr-c-500);
+  --sc-pr-bg: var(--pr-c-200);
+  --sc-pr-stroke: var(--pr-c-700);
+  --sc-gr-gradient: linear-gradient(
+    rgba(217, 217, 217, 0.75) 0%,
+    rgba(217, 217, 217, 0.15) 85%,
+    rgba(217, 217, 217, 0) 100%
+  );
+  --sc-gr-dot: #b3b3b3;
+
+  /* Common : 블랙 앤 화이트 */
+  --cm-w: #ffffff;
+  --cm-b: #000000;
+
+  /* 둥글기 */
+  --radios-b: 25px;
+  --radius-m: 15px;
+  --radius-s: 7px;
+
+  /* 컨테이너 & 그리드 */
+  --container-max: 100%; /* 모바일 기본: 화면 꽉 차게 */
+  --gutter: 16px; /* 양옆 패딩 */
+  --grid-gap: 16px;
+
+  /* icon 크기 선언 */
+  --icon-16: 1rem;
+  --icon-24: 1.5rem;
+  --icon-36: 2rem;
+}
+
+html,
+body {
+  color: var(--foreground);
+  background: var(--background);
+
+  /* ========== 폰트 선언 ========== */
+  font-family:
+    'Pretendard Variable',
+    'Pretendard',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* -------------------------
+   2. Base
+   ------------------------- */
+
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: var(--ft-content-24);
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--pr-c-200);
+  color: var(--pr-c-700);
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  outline: none;
+  caret-color: var(--sc-pr-point);
+}
+
+/* -------------------------
+   3. Layout Helpers
+   ------------------------- */
+
+/* 모바일/PC 버전 토글용 유틸 */
+.only-mobile {
+  display: block;
+}
+.only-desktop {
+  display: none;
+}
+
+/* 공통 컨테이너 */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* 카드/리스트 공통 그리드 (모바일 1열) */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+}
+
+/* 상단/본문/하단 예시 구조 */
+.header,
+.footer {
+  padding-block: 16px;
+}
+
+.main {
+  padding-block: 24px;
+}
+
+/* 카드 예시 */
+.card {
+  border: 1px solid var(--gr-caption);
+  border-radius: var(--radios-b);
+  background: var(--cm-w);
+  color: #111;
+  padding: 16px;
+}
+
+/* -------------------------
+   4. PC 확장 (>=1024px)
+   ------------------------- */
+@media (min-width: 1024px) {
+  :root {
+    --container-max: 1200px; /* PC 버전 최대 폭 */
+    --gutter: 24px;
+    --grid-gap: 24px;
+  }
+
+  /* 모바일/PC 버전 토글 */
+  .only-mobile {
+    display: none !important;
+  }
+  .only-desktop {
+    display: block !important;
+  }
+
+  /* PC 레이아웃: 사이드바 + 본문 2열 예시 */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* sidebar + content */
+    gap: var(--grid-gap);
+  }
+
+  /* 카드 그리드: PC에서 3열 */
+  .grid--cards-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--grid-gap);
+  }
+
+  /* 헤더/푸터 패딩 확장 */
+  .header,
+  .footer {
+    padding-block: 24px;
+  }
+
+  .main {
+    padding-block: 32px;
+  }
+}
+
+/* -------------------------
+   5. 아주 큰 화면(>=1440px)에서 확장
+   ------------------------- */
+@media (min-width: 1440px) {
+  :root {
+    --container-max: 1440px;
+  }
+}
+
+/* -------------------------
+   6. 다크모드 색 구성 유지
+   ------------------------- */
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  .card {
+    background: #0f0f10;
+    color: #f1f1f1;
+    border-color: #2a2a2a;
+  }
+}
