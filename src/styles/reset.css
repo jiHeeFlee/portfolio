@@ -1,0 +1,128 @@
+/* reset.css : 브라우저 기본 스타일을 최소한으로 초기화
+    - 레이아웃/타이포/컬러 포함X
+    - 접근성(포커스, 리듀스 모션) 유지 
+*/
+
+/* 1. 박스 사이징 : 계산 쉬움 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. 기본 여백 제거 : 문서, 색션*/
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+/* 3. 본문 기본값 : 글줄 간격만 안전하게 확보*/
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+/* 4. 리스트 기본 불릿 제거(역할 기반), 일반 ul, ol 유지*/
+:where(ul, ol)[role='list'] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 5. 링크 : 밑줄/색은 디자인에서 관리. 탭 포커스 유지*/
+a {
+  text-decoration-skip-ink: auto;
+  background-color: transparent;
+}
+a:not([class]) {
+  text-decoration-thickness: from-font;
+}
+
+/* 6. 이미지/미디어 : 컨테이너에 맞게 축소, 비율 유지 */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img,
+picture,
+video,
+canvas {
+  height: auto;
+}
+
+/* 7. 폼 요소 : 폰트, 색 상속. 기본 margin 제거 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+button {
+  cursor: pointer;
+}
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+/* 8. 포커스 표시 : OS/브라우저 기본을 존중(접근성 유지) */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid CanvasText;
+  outline-offset: 2px;
+}
+
+/* 9. 테이블 : 레이아웃 안정 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 10. 코드/프리 텍스트 : 줄바꿈 개선*/
+pre,
+code,
+kbd,
+samp {
+  font: inherit;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+/* 11. 리듀스 모션 환경 : 애니메이션, 트랜지션 최소화 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
